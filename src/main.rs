@@ -1,13 +1,24 @@
-fn odd_or_even (a : i32) -> bool {
-    if a % 2 == 0 {
-        return true;
-    } 
-    return false;
+fn main(){
+    let result : i32 = fib(8);
+    println!("{}", result);
 }
 
+fn fib(a : i32) -> i32 {
 
-fn main() {
-    println!("Hello, world!");
-    let result = odd_or_even(19);
-    println!("{}", result);
+    let mut first= 0;
+    let mut second  = 1;
+    let mut third = 1;
+    
+    if a == 0 {
+        return first;
+    } else if a == 1 {
+        return second;
+    }
+
+    for _ in 1..a-2 {
+            first = second;
+            second = third;
+            third = first + second;
+    }
+    return third;
 }
