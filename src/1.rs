@@ -9,5 +9,5 @@ fn odd_or_even (a : i32) -> bool {
 fn main() {
     println!("Hello, world!");
     let result = odd_or_even(19);
-    println!("{}", result);
+   println!("{}", result);
 }
