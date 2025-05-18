@@ -50,3 +50,5 @@ fn main() {
 }
 
 
+// Vectors as a macro
+// let number : Vec<i32> = vec![1,2,3,4,5];
