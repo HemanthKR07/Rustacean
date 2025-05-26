@@ -27,6 +27,9 @@ use std::sync::Mutex;
 Multiple ownership and multiple threads.
  */ 
 
+
+
+/*
 use std::rc::Rc;
 
 fn main() {
@@ -39,11 +42,40 @@ fn main() {
                        let mut num = counter.lock().unwrap();
                        *num += 1;
               });
-              vector.push(counter);
+              vector.push(handler);
        }
 
        for j in vector {
               j.join().unwrap();
        }
        println("{:?}", vector);
+}
+
+
+*/ 
+
+
+// Rc is not safe to be shared amoung many threads. Its not safe.
+// So we use Atomic reference counting. 
+//
+
+
+use std::sync::{Arc, Mutex};
+
+fn main() {
+         let counter = Arc::new(Mutex::new(1));
+         let mut vector = vec![];
+
+         for i in 1..11 {
+                 let counter = Arc::clone(&counter);
+                 let handler = thread::spawn(move || {
+                           let mut num = Mutex.lock().unwrap();
+                           *num += 1;
+                  })
+                 vector.push(handler);
+         }
+         for j in vector {
+                 j.join().unwrap();
+         }
+         println("");
 }

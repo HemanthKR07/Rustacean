@@ -1,5 +1,13 @@
-trait ForUser{
-        fn new_age(&self);
+trait Summary {
+        fn summarize (&self) -> String {
+                    return String::from("hi from summarize");
+        }
+}
+
+trait Fix {
+        fn fixer (&self) -> String {
+                    return String::from("hi from fixer");
+        }
 }
 
 struct User {
@@ -7,16 +15,19 @@ struct User {
     age : i32,
 }
 
-impl ForUser for User {
-        fn new_age(&self) {
-                println!("I am {} and my age is {}. ", self.name, self.age);
-        }
+impl Summary for User {}
+impl Fix for User {}
+
+fn main() {
+        let _user_ = User {
+                name : String::from("Hemanth"),
+                age : 20
+        };
+
+        notify(_user_);
 }
 
-fn main(){
-    let user = User {
-            name : String::from("Hemanth"),
-            age : 20,
-    };
-    user.new_age();
+fn notify <T : Summary + Fix> (input : T) {
+        println!("{}", input.summarize());
+        println!("{}", input.fixer());
 }
